@@ -1,0 +1,1 @@
+web: gunicorn tanya-dokter:tanya-dokter
