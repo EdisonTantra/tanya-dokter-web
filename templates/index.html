@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tanya Dokter</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div id="top-background"></div>
+  <div class="progress" id="loading-indicator">
+    <div class="progress-bar progress-bar-striped active" style="width: 100%">
+    </div>
+  </div>
+
+  <img src="http://placehold.it/350x150" alt="LOGO IMAGE" id="logo-image" />
+
+  <div class="input-group" id="search-bar">
+    <input type="text" class="form-control" placeholder="Search for..">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button" id="search-button">
+        Go!
+      </button>
+    </span>
+  </div>
+
+  <div class="col-xs-6 col-xs-offset-3">
+    <ul class="list-group" id="search-results">
+      <li class="list-group-item">
+         <a href="#">Cats</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">Dogs</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">Fluffy Cats and Dogs</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">Foo</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">Bar</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">NoSQL Foo Bar</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">Lorem Ipsum</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">Dorem met.</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">Molecular Structure</a>
+      </li>
+      <li class="list-group-item">
+         <a href="#">Class Standard Articles</a>
+      </li>
+    </ul>
+  </div>
+</body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</html>
