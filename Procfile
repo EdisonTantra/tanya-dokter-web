@@ -1,1 +1,1 @@
-web: gunicorn tanya-dokter:tanya-dokter
+web: gunicorn wsgi:app
