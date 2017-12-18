@@ -24,7 +24,6 @@ function searchQuery(query) {
       $('#search-results').html('<p>An error has occurred</p>');
     },
     success: function(resp) {
-      $('#search-results').html("");
       for (i = 1; i <= 10; i++) { 
         var $entry = '<li class="list-group-item"><a href="#">'+ resp[i].disease +'</a></li>';
         $('#search-results').append($entry);
@@ -35,6 +34,7 @@ function searchQuery(query) {
 
 var indicatorTimeout;
 function processResults() {
+  $('#search-results').html("");
   clearTimeout(indicatorTimeout);
   indicatorTimeout = setTimeout(function() {
     $("#loading-indicator").removeClass("go-top").addClass("ready");
