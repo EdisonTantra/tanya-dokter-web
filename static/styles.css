@@ -71,8 +71,8 @@ body {
 
 #search-bar.go-top {
   top: 8px;
-  left: calc(350px / 3 + 10px);
-  width: calc(100vw - (350px / 3 + 50px));
+  left: calc(350px / 3 + 45px);
+  width: calc(98vw - (350px / 3 + 50px));
 }
 
 #search-results {
