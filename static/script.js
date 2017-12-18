@@ -39,8 +39,9 @@ function processResults() {
   indicatorTimeout = setTimeout(function() {
     $("#loading-indicator").removeClass("go-top").addClass("ready");
     
-    showResults();
   }, 1250);
+
+  showResults();
 }
 
 var $searchResults = $("#search-results");
