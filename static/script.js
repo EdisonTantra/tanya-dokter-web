@@ -37,7 +37,6 @@ var indicatorTimeout;
 function processResults() {
   clearTimeout(indicatorTimeout);
   indicatorTimeout = setTimeout(function() {
-    $('#search-results').html("");
     $("#loading-indicator").removeClass("go-top").addClass("ready");
     
     showResults();
