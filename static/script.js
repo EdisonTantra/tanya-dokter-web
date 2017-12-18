@@ -5,13 +5,12 @@ $("#search-button").on("click", function() {
   var query = $("#queryField").val();
   $("#loading-indicator").removeClass("ready");
   $animateSet.addClass("go-top");
-  searchQuery(query)
   processResults();
+  searchQuery(query)
 });
 
 $("#search-bar").find("input").on('keyup', function(e) {
   if (e.keyCode == 13) {
-    $('#search-results').text("")
     $("#search-results").removeClass("show");
     $("#search-button").trigger('click');
   }
