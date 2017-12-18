@@ -32,7 +32,6 @@ def search():
 		if algo == '1':
 			response = jsonify(tfidf(data, queries, max_response))
 		else:
-			print algo
 			response = jsonify(lsa(data, queries, max_response))
 		return response
 
