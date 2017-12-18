@@ -1,6 +1,7 @@
 import json
 import os
-from tfidf_search import run
+from tfidf_search import run as tfidf
+from lsa_search import run as lsa
 from flask import Flask
 from flask import request
 from flask import jsonify
@@ -20,15 +21,19 @@ def main():
 @cross_origin()
 def search():
 	if request.method == 'GET':
-		data = data = json.load(open('data/clean_data.json'))
+		data = data = json.load(open('data/training_data.json'))
+		algo = request.args.get('algo', '1')
 		query1 = request.args.get('q1', '')
 		query2 = request.args.get('q2', '')
 		query3 = request.args.get('q3', '')
 		max_response = request.args.get("max_resp", 10)
 
 		queries = query1 + " " + query2 + " " + query3
-		response = jsonify(run(data, queries, max_response))
-		# response.headers.add('Access-Control-Allow-Origin', '*')
+		if algo == '1':
+			response = jsonify(tfidf(data, queries, max_response))
+		else:
+			print algo
+			response = jsonify(lsa(data, queries, max_response))
 		return response
 
 @app.route('/api/data/small', methods=['GET'])

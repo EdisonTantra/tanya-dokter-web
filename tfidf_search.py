@@ -93,8 +93,8 @@ def run(data,queries, max_response = 10):
 
     # pprint(response)
 
-    with open('search_result.json', 'w') as outfile:
-        json.dump(response, outfile)
+    # with open('search_result.json', 'w') as outfile:
+    #     json.dump(response, outfile)
 
     return response
-    print("Your result in search_result.json")
+    # print("Your result in search_result.json")
