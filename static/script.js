@@ -1,39 +1,37 @@
 var $animateSet = $("#top-background, #loading-indicator, #logo-image, #search-bar");
 
 $("#search-button").on("click", function() {
+  $('#search-results').text("")
   var query = $("#queryField").val();
   $("#loading-indicator").removeClass("ready");
   $animateSet.addClass("go-top");
-  console.log(query)
   searchQuery(query)
   processResults();
 });
 
 $("#search-bar").find("input").on('keyup', function(e) {
   if (e.keyCode == 13) {
-  $("#search-results").removeClass("show");
-  $("#search-button").trigger('click');
-    }
+    $('#search-results').text("")
+    $("#search-results").removeClass("show");
+    $("#search-button").trigger('click');
+  }
 });
 
 function searchQuery(query) {
   $.ajax({
-   url: 'http://tanya-dokter.herokuapp.com/api/search/?q1='+query,
-   method: 'GET',
-   contentType: 'application/json',
-   error: function() {
+    url: 'http://tanya-dokter.herokuapp.com/api/search/?q1='+query,
+    method: 'GET',
+    contentType: 'application/json',
+    error: function() {
       $('#search-results').html('<p>An error has occurred</p>');
-   },
-   success: function(resp) {
-      console.log(resp)
+    },
+    success: function(resp) {
       for (i = 1; i <= 10; i++) { 
         var $entry = '<li class="list-group-item"><a href="#">'+ resp[i].disease +'</a></li>';
-        $('#search-results')
-         .append($entry);
+        $('#search-results').append($entry);
       }
-
-   },
-});
+    },
+  });
 }
 
 var indicatorTimeout;
