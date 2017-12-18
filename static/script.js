@@ -4,8 +4,8 @@ $("#search-button").on("click", function() {
   var query = $("#queryField").val();
   $("#loading-indicator").removeClass("ready");
   $animateSet.addClass("go-top");
-  processResults();
   searchQuery(query)
+  processResults();
 });
 
 $("#search-bar").find("input").on('keyup', function(e) {
