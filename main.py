@@ -5,8 +5,11 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask import render_template
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/', methods=['GET'])
 def main():
@@ -14,6 +17,7 @@ def main():
 	return render_template('index.html', error=error)
 
 @app.route('/api/search/', methods=['GET'])
+@cross_origin()
 def search():
 	if request.method == 'GET':
 		data = data = json.load(open('data/training_data.json'))
@@ -24,7 +28,7 @@ def search():
 
 		queries = query1 + " " + query2 + " " + query3
 		response = jsonify(run(data, queries, max_response))
-		response.headers.add('Access-Control-Allow-Origin', '*')
+		# response.headers.add('Access-Control-Allow-Origin', '*')
 		return response
 
 @app.route('/api/data/small', methods=['GET'])
