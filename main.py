@@ -8,17 +8,6 @@ from flask import render_template
 
 app = Flask(__name__)
 
-# def run(environ, start_response):
-    
-#     data = 'Hello, World!\n'
-#     status = '200 OK'
-#     response_headers = [
-#         ('Content-type','text/plain'),
-#         ('Content-Length', str(len(data)))
-#     ]
-#     start_response(status, response_headers)
-#     return iter([data])
-
 @app.route('/', methods=['GET'])
 def main():
 	error = None
@@ -34,7 +23,9 @@ def search():
 		max_response = request.args.get("max_resp", 10)
 
 		queries = query1 + " " + query2 + " " + query3
-		return jsonify(run(data, queries, max_response))
+		response = jsonify(run(data, queries, max_response))
+		response.headers.add('Access-Control-Allow-Origin', '*')
+		return response
 
 @app.route('/api/data/small', methods=['GET'])
 def trainingData():
