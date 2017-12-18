@@ -5,8 +5,7 @@ $("#search-button").on("click", function() {
   $("#loading-indicator").removeClass("ready");
   $animateSet.addClass("go-top");
   console.log(query)
-  searchQuery(query )
-  console.log("hai");
+  searchQuery(query)
   processResults();
 });
 
@@ -21,16 +20,14 @@ function searchQuery(query) {
   $.ajax({
    url: 'http://tanya-dokter.herokuapp.com/api/search/?q1='+query,
    error: function() {
-      $('#info').html('<p>An error has occurred</p>');
+      $('#searchResult').html('<p>An error has occurred</p>');
    },
    success: function(data) {
       console.log(data)
-      for (i = 0; i < 10; i++) { 
-        var $title = $('<h1>').text(data.disease[i]);
-        var $description = $('<p>').text(data.raw_data[i]);
-        $('#info')
-         .append($title)
-         .append($description);
+      for (i = 1; i <= 10; i++) { 
+        var $entry = '<li class="list-group-item"><a href="#">'+ data.i.disease +'</a></li>';
+        $('#searchResult')
+         .append($entry);
       }
 
    },
