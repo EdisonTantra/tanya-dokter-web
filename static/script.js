@@ -20,7 +20,7 @@ function searchQuery(query) {
   $.ajax({
    url: 'http://tanya-dokter.herokuapp.com/api/search/?q1='+query,
    method: 'GET',
-   Content-Type: 'application/json',
+   contentType: 'application/json',
    error: function() {
       $('#search-results').html('<p>An error has occurred</p>');
    },
