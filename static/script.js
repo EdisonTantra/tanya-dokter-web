@@ -4,13 +4,13 @@ $("#search-button").on("click", function() {
   var query = $("#queryField").val();
   $("#loading-indicator").removeClass("ready");
   $animateSet.addClass("go-top");
+  $("#search-results").html("")
   searchQuery(query)
-  processResults();
-  showResults();
 });
 
 $("#search-bar").find("input").on('keyup', function(e) {
   if (e.keyCode == 13) {
+    var query = $("#queryField").val();
     $("#search-results").removeClass("show");
     $("#search-button").trigger('click');
   }
@@ -18,19 +18,24 @@ $("#search-bar").find("input").on('keyup', function(e) {
 
 function searchQuery(query) {
   $.ajax({
-    url: 'http://tanya-dokter.herokuapp.com/api/search/?q1='+query,
-    method: 'GET',
-    contentType: 'application/json',
-    error: function() {
+   url: 'http://tanya-dokter.herokuapp.com/api/search/?q1='+query,
+   method: 'GET',
+   contentType: 'application/json',
+   crossDomain:true,
+   error: function() {
       $('#search-results').html('<p>An error has occurred</p>');
-    },
-    success: function(resp) {
+   },
+   success: function(resp) {
+      console.log(resp)
       for (i = 1; i <= 10; i++) { 
         var $entry = '<li class="list-group-item"><a href="#">'+ resp[i].disease +'</a></li>';
-        $('#search-results').append($entry);
+        $('#search-results')
+         .append($entry);
       }
-    },
-  });
+      
+      processResults();
+   },
+});
 }
 
 var indicatorTimeout;
