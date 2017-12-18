@@ -35,7 +35,7 @@ body {
 #logo-image {
   position: fixed;
   top: 64px;
-  left: calc(50vw - 175px);
+  left: calc(46vw - 175px);
   height: 150px;
   animation-name: logo-image;
   z-index: 101;

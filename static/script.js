@@ -1,7 +1,7 @@
 var $animateSet = $("#top-background, #loading-indicator, #logo-image, #search-bar");
 
 $("#search-button").on("click", function() {
-  $('#search-results').text("")
+  $('#search-results').html("")
   var query = $("#queryField").val();
   $("#loading-indicator").removeClass("ready");
   $animateSet.addClass("go-top");
