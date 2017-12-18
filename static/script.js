@@ -19,19 +19,20 @@ $("#search-bar").find("input").on('keyup', function(e) {
 function searchQuery(query) {
   $.ajax({
    url: 'http://tanya-dokter.herokuapp.com/api/search/?q1='+query,
+   method: 'GET',
+   Content-Type: 'application/json',
    error: function() {
-      $('#searchResult').html('<p>An error has occurred</p>');
+      $('#search-results').html('<p>An error has occurred</p>');
    },
-   success: function(data) {
-      console.log(data)
+   success: function(resp) {
+      console.log(resp)
       for (i = 1; i <= 10; i++) { 
-        var $entry = '<li class="list-group-item"><a href="#">'+ data.i.disease +'</a></li>';
-        $('#searchResult')
+        var $entry = '<li class="list-group-item"><a href="#">'+ resp[i].disease +'</a></li>';
+        $('#search-results')
          .append($entry);
       }
 
    },
-     type: 'GET'
 });
 }
 
