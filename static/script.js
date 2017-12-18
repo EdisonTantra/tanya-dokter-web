@@ -6,6 +6,7 @@ $("#search-button").on("click", function() {
   $animateSet.addClass("go-top");
   searchQuery(query)
   processResults();
+  showResults();
 });
 
 $("#search-bar").find("input").on('keyup', function(e) {
@@ -34,14 +35,13 @@ function searchQuery(query) {
 
 var indicatorTimeout;
 function processResults() {
-  $('#search-results').html("");
   clearTimeout(indicatorTimeout);
   indicatorTimeout = setTimeout(function() {
+    $('#search-results').html("");
     $("#loading-indicator").removeClass("go-top").addClass("ready");
     
+    showResults();
   }, 1250);
-
-  showResults();
 }
 
 var $searchResults = $("#search-results");
