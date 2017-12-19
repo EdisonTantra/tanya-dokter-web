@@ -24,7 +24,7 @@ def main():
 @cross_origin()
 def search():
 	if request.method == 'GET':
-		data = data = json.load(open('data/training_data.json', encoding="utf-8"))
+		data = data = json.load(open('data/testing_data.json', encoding="utf-8"))
 		algo = request.args.get('algo', '1')
 		query1 = request.args.get('q1', '')
 		query2 = request.args.get('q2', '')

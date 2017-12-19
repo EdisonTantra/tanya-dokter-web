@@ -27,8 +27,9 @@ function searchQuery(query) {
    },
    success: function(resp) {
       console.log(resp)
-      for (i = 1; i <= 10; i++) { 
-        var $entry = '<li class="list-group-item"><a href="#">'+ resp[i].disease +'</a></li>';
+      for (i = 1; i <= 10; i++) {
+        console.log(resp[i].link) 
+        var $entry = '<li class="list-group-item"><a href="' + resp[i].link + '">'+ resp[i].disease +'</a></li>';
         $('#search-results')
          .append($entry);
       }
