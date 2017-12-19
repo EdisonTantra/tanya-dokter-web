@@ -1,5 +1,6 @@
 import json
 import os
+import time
 from tfidf_search import run as tfidf
 from lsa_search import run as lsa
 from flask import Flask
@@ -27,12 +28,17 @@ def search():
 		query2 = request.args.get('q2', '')
 		query3 = request.args.get('q3', '')
 		max_response = request.args.get("max_resp", 10)
+		start = time.time()
+		print("timer start")
 
 		queries = query1 + " " + query2 + " " + query3
 		if algo == '1':
 			response = jsonify(tfidf(data, queries, max_response))
 		else:
 			response = jsonify(lsa(data, queries, max_response))
+		end = time.time()
+		print("timer stop. Runtime: ")
+		print(end - start)
 		return response
 
 @app.route('/api/data/small', methods=['GET'])

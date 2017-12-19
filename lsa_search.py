@@ -18,6 +18,8 @@ def run(data, queries, max_response = 10):
 		index += 1
 
 	sorted_resp = sorted(indexed_result.items(), key=operator.itemgetter(1), reverse=True)
+
+	sorted_resp = sorted_resp[:int(max_response)+1]
 	print sorted_resp
 
 	response = {}
