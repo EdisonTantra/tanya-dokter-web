@@ -18,7 +18,6 @@ def run(data, queries, max_response = 10):
 		index += 1
 
 	sorted_resp = sorted(indexed_result.items(), key=operator.itemgetter(1), reverse=True)
-	print sorted_resp
 
 	response = {}
 	rank = 1
