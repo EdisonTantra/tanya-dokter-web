@@ -18,7 +18,7 @@ $("#search-bar").find("input").on('keyup', function(e) {
 
 function searchQuery(query) {
   $.ajax({
-   url: 'http://localhost:5000/api/search/?q1='+query,
+   url: 'http://tanya-dokter.herokuapp.com/api/search/?algo=2&q1='+query,
    method: 'GET',
    contentType: 'application/json',
    crossDomain:true,
