@@ -1,5 +1,5 @@
 from math import *
-from transform import Transform
+from .transform import Transform
 
 class TFIDF(Transform):
 
