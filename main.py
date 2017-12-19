@@ -8,6 +8,8 @@ from flask import request
 from flask import jsonify
 from flask import render_template
 from flask_cors import CORS, cross_origin
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -22,7 +24,7 @@ def main():
 @cross_origin()
 def search():
 	if request.method == 'GET':
-		data = data = json.load(open('data/training_data.json'))
+		data = data = json.load(open('data/training_data.json', encoding="utf-8"))
 		algo = request.args.get('algo', '1')
 		query1 = request.args.get('q1', '')
 		query2 = request.args.get('q2', '')
@@ -32,6 +34,16 @@ def search():
 		print("timer start")
 
 		queries = query1 + " " + query2 + " " + query3
+		#remove stopwords
+		factory = StopWordRemoverFactory()
+		stopword = factory.create_stop_word_remover()
+		stopword.remove(queries)
+
+		#stemming
+		factory = StemmerFactory()
+		stemmer = factory.create_stemmer()
+		queries = stemmer.stem(queries)
+
 		if algo == '1':
 			response = jsonify(tfidf(data, queries, max_response))
 		else:
@@ -43,7 +55,7 @@ def search():
 
 @app.route('/api/data/small', methods=['GET'])
 def trainingData():
-	data = json.load(open('data/training_data.json'))
+	data = json.load(open('data/training_data.json', encoding="utf-8"))
 	return jsonify(data)
 
 @app.route('/api/data/real', methods=['GET'])
