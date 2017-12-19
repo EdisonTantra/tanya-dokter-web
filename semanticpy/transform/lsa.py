@@ -1,18 +1,18 @@
 from scipy import linalg,dot
 
-from transform import Transform
+from .transform import Transform
 
 class LSA(Transform):
-    """ Latent Semantic Analysis(LSA).
-	    Apply transform to a document-term matrix to bring out latent relationships.
-	    These are found by analysing relationships between the documents and the terms they 
-	    contain.
-    """
+	""" Latent Semantic Analysis(LSA).
+		Apply transform to a document-term matrix to bring out latent relationships.
+		These are found by analysing relationships between the documents and the terms they 
+		contain.
+	"""
 
-    def transform(self, dimensions=1):
+	def transform(self, dimensions=1):
 		""" Calculate SVD of objects matrix: U . SIGMA . VT = MATRIX 
-		    Reduce the dimension of sigma by specified factor producing sigma'. 
-		    Then dot product the matrices:  U . SIGMA' . VT = MATRIX'
+			Reduce the dimension of sigma by specified factor producing sigma'. 
+			Then dot product the matrices:  U . SIGMA' . VT = MATRIX'
 		"""
 		rows,cols = self.matrix.shape
 
@@ -31,4 +31,4 @@ class LSA(Transform):
 			return transformed_matrix
 
 		else:
-			print "dimension reduction cannot be greater than %s" % rows
+			print("dimension reduction cannot be greater than %s", rows)
